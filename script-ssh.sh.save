@@ -1,0 +1,15 @@
+cat /var/log/auth.log* | grep 'Failed password for root' | awk -F ' ' '{print $11}' | sed '/Failed/d' > ./root_tries.txt
+
+
+
+while IFS= read -r line;
+	do newArr+=($line)
+done < root_tries.txt
+
+
+#echo "${newArr[@]}" | tr ' ' '\n'
+
+#for i in "${newArr[@]}"; do
+#	echo "    $i        `geoiplookup $i | cut -d ' ' -f 4-5`" 
+#done | sort |  uniq -c | sort -nr
+
